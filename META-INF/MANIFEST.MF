@@ -4,3 +4,5 @@ Bundle-Name: Jsonout Plug-in
 Bundle-SymbolicName: net.jsonout
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: net.jsonout,
+ net.jsonout.support
