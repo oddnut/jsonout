@@ -54,6 +54,32 @@ public class StandardArrayWriter implements ArrayWriter {
 		return valueWriter;
 	}
 	
+	public void values(Object... vals) throws IOException {
+		if (vals == null)
+			throw new IllegalArgumentException("vals must not be null- must have at least one argument");
+		
+		for (Object o : vals) {
+			if (o == null)
+				nul();
+			else if (o instanceof Number)
+				number((Number) o);
+			else if (o instanceof String)
+				string((String) o);
+			else if (o instanceof Boolean)
+				bool(((Boolean) o).booleanValue());
+			else if (o instanceof byte[])
+				base64().write((byte[]) o);
+			else if (o instanceof Object[])
+				array((Object[]) o);
+			else
+				throw new IllegalArgumentException(
+						"values must be instances of String, Number, Boolean, byte[], Object[], or be null" + 
+						"the illegal value is of type " + 
+						o.getClass().getCanonicalName() + 
+						"and it's value is: " + o);
+		}
+	}
+	
 	public void space(String whitespace) throws IOException {
 		throwIfClosed();
 		closeMember();
@@ -81,6 +107,10 @@ public class StandardArrayWriter implements ArrayWriter {
 	
 	public ArrayWriter array() throws IOException {
 		return value().array();
+	}
+	
+	public ArrayWriter array(Object... vals) throws IOException {
+		return value().array(vals);
 	}
 	
 	public void string(String s) throws IOException {

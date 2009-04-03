@@ -64,6 +64,15 @@ public class StandardValueWriter implements ValueWriter {
 		return arrayWriter;
 	}
 	
+	public ArrayWriter array(Object... vals) throws IOException {
+		ArrayWriter aw = array();
+		
+		if (vals != null)
+			aw.values(vals);
+		
+		return aw;
+	}
+	
 	public void string(String s) throws IOException {
 		checkOpen();
 		if (s == null) {

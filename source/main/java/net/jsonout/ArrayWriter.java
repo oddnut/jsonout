@@ -21,6 +21,8 @@ public interface ArrayWriter extends ValueWriter {
 	// *** Interface Methods ***
 	ValueWriter value() throws IOException;
 	
+	void values(Object... vals) throws IOException;
+	
 	void space(String whitespace) throws IOException;
 	
 	void close() throws IOException;

@@ -24,6 +24,12 @@ public interface ValueWriter {
 	ObjectWriter object() throws IOException;
 	
 	ArrayWriter array() throws IOException;
+	/*ArrayWriter array(int... ints) throws IOException;
+	ArrayWriter array(long... longs) throws IOException;
+	ArrayWriter array(double... doubles) throws IOException;
+	ArrayWriter array(float... floats) throws IOException;
+	ArrayWriter array(boolean... bools) throws IOException;*/
+	ArrayWriter array(Object... vals) throws IOException;
 	
 	void string(String s) throws IOException;
 	Writer string() throws IOException;
