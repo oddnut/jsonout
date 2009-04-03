@@ -113,7 +113,7 @@ public class StandardArrayWriter implements ArrayWriter {
 		return value().array(vals);
 	}
 	
-	public void string(String s) throws IOException {
+	public void string(CharSequence s) throws IOException {
 		value().string(s);
 	}
 	

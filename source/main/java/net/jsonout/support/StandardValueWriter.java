@@ -73,14 +73,14 @@ public class StandardValueWriter implements ValueWriter {
 		return aw;
 	}
 	
-	public void string(String s) throws IOException {
+	public void string(CharSequence s) throws IOException {
 		checkOpen();
 		if (s == null) {
 			nul();
 			return;
 		}
 		
-		string().write(s);
+		string().append(s);
 		
 		stringWriter.close();
 		
