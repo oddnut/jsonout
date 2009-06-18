@@ -54,6 +54,10 @@ public class StandardArrayWriter implements ArrayWriter {
 		return valueWriter;
 	}
 	
+	public void value(JSONValue value) throws IOException {
+		value.writeTo(value());
+	}
+	
 	public void values(Object... vals) throws IOException {
 		if (vals == null)
 			throw new IllegalArgumentException("vals must not be null- must have at least one argument");

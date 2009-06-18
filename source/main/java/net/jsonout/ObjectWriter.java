@@ -20,6 +20,9 @@ public interface ObjectWriter {
 
 	// *** Interface Methods ***
 	ValueWriter member(String name) throws IOException;
+	
+	void member(String name, JSONValue value) throws IOException;
+	
 	MemberWriter member() throws IOException;
 	
 	void space(String whitespace) throws IOException;

@@ -26,6 +26,7 @@ public interface MemberWriter {
 	OutputStream base64Name() throws IOException;
 	
 	ValueWriter value() throws IOException;
+	void value(JSONValue value) throws IOException;
 	
 	void space(String whitespace) throws IOException;
 }

@@ -42,6 +42,12 @@ public class StandardObjectWriter implements ObjectWriter, MemberWriter {
 		return value();
 	}
 	
+	public void member(String name, JSONValue value) throws IOException {
+		member();
+		name(name);
+		value(value);
+	}
+	
 	public MemberWriter member() throws IOException {
 		throwIfClosed();
 		
@@ -119,6 +125,10 @@ public class StandardObjectWriter implements ObjectWriter, MemberWriter {
 		valueWriter.open(out, depth + 1);
 		
 		return valueWriter;
+	}
+	
+	public void value(JSONValue value) throws IOException {
+		value.writeTo(value());
 	}
 
 	// *** Public Methods ***
