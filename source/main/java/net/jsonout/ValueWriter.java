@@ -25,6 +25,7 @@ public interface ValueWriter {
 	
 	ArrayWriter array() throws IOException;
 	ArrayWriter array(Object... vals) throws IOException;
+	ArrayWriter array(Iterable<Object> vals) throws IOException;
 	
 	void string(CharSequence s) throws IOException;
 	Writer string() throws IOException;

@@ -104,6 +104,10 @@ public class StandardArrayWriter implements ArrayWriter {
 		return value().array(vals);
 	}
 	
+	public ArrayWriter array(Iterable<Object> vals) throws IOException {
+		return value().array(vals);
+	}
+	
 	public void string(CharSequence s) throws IOException {
 		value().string(s);
 	}

@@ -73,6 +73,15 @@ public class StandardValueWriter implements ValueWriter {
 		return aw;
 	}
 	
+	public ArrayWriter array(Iterable<Object> vals) throws IOException {
+		ArrayWriter aw = array();
+		
+		if (vals != null)
+			aw.values(vals);
+		
+		return aw;
+	}
+	
 	public void string(CharSequence s) throws IOException {
 		checkOpen();
 		if (s == null) {
