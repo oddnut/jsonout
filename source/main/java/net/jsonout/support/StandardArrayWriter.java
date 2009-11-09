@@ -62,26 +62,13 @@ public class StandardArrayWriter implements ArrayWriter {
 		if (vals == null)
 			throw new IllegalArgumentException("vals must not be null- must have at least one argument");
 		
-		for (Object o : vals) {
-			if (o == null)
-				nul();
-			else if (o instanceof Number)
-				number((Number) o);
-			else if (o instanceof String)
-				string((String) o);
-			else if (o instanceof Boolean)
-				bool(((Boolean) o).booleanValue());
-			else if (o instanceof byte[])
-				base64().write((byte[]) o);
-			else if (o instanceof Object[])
-				array((Object[]) o);
-			else
-				throw new IllegalArgumentException(
-						"values must be instances of String, Number, Boolean, byte[], Object[], or be null" + 
-						"the illegal value is of type " + 
-						o.getClass().getCanonicalName() + 
-						"and it's value is: " + o);
-		}
+		for (Object o : vals)
+			value(o);
+	}
+	
+	public void values(Iterable<Object> vals) throws IOException {
+		for (Object o : vals)
+			value(o);
 	}
 	
 	public void space(String whitespace) throws IOException {
@@ -173,6 +160,27 @@ public class StandardArrayWriter implements ArrayWriter {
 	// *** Package Methods ***
 
 	// *** Private Methods ***
+	private void value(Object o) throws IOException {
+		if (o == null)
+			nul();
+		else if (o instanceof Number)
+			number((Number) o);
+		else if (o instanceof String)
+			string((String) o);
+		else if (o instanceof Boolean)
+			bool(((Boolean) o).booleanValue());
+		else if (o instanceof byte[])
+			base64().write((byte[]) o);
+		else if (o instanceof Object[])
+			array((Object[]) o);
+		else
+			throw new IllegalArgumentException(
+					"values must be instances of String, Number, Boolean, byte[], Object[], or be null" + 
+					"the illegal value is of type " + 
+					o.getClass().getCanonicalName() + 
+					"and it's value is: " + o);
+	}
+	
 	private void writeMemberSeparator() throws IOException {
 		out.write(", ");
 	}

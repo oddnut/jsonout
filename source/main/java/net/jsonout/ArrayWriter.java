@@ -25,6 +25,8 @@ public interface ArrayWriter extends ValueWriter {
 	
 	void values(Object... vals) throws IOException;
 	
+	void values(Iterable<Object> vals) throws IOException;
+	
 	void space(String whitespace) throws IOException;
 	
 	void close() throws IOException;
