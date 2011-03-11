@@ -139,10 +139,12 @@ public class StandardObjectWriter implements ObjectWriter, MemberWriter {
 		
 		state = State.open;
 		
-		out.write('\n');
+		if (depth > 0)
+			out.write('\n');
 		for (int i = 0 ; i < depth ; i++)
 			out.write("  ");
-		out.write(" ");
+		if (depth > 0)
+			out.write(" ");
 		
 		out.write('{');
 	}
@@ -159,8 +161,12 @@ public class StandardObjectWriter implements ObjectWriter, MemberWriter {
 	private void writeMemberSeparator() throws IOException {
 		out.write(',');
 		out.write('\n');
-		for (int i = 0 ; i < depth+1 ; i++)
+		for (int i = 0 ; i < depth ; i++)
 			out.write("  ");
+		if (depth > 0)
+			out.write("  ");
+		else
+			out.write(" ");
 	}
 	
 	private void closeMember() throws IOException {
