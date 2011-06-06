@@ -1,0 +1,17 @@
+apply from: "../oddnut/repositories.gradle"
+apply from: "../oddnut/osgi.gradle"
+
+version = "1.0.0"
+
+jar {
+	manifest {
+		setName			"JSONOut"
+		symbolicName =	"net.jsonout"
+		vendor =		"David Fogel"
+		description =	"Streaming heirarchical API for writing JSON"
+		version =		project.version
+		
+		instruction "Export-Package", "net.jsonout.*;version=$version"
+		//instruction "Private-Package", ""
+	}
+}
